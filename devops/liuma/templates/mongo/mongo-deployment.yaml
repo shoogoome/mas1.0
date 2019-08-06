@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name:  {{ .Release.Name }}-mongo-deployment
+  namespace:  {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mongo
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}-mongo-data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-mongo-pvc
+
+      containers:
+      - name: {{ .Release.Name }}-mongo
+        image: {{ .Values.mongo.image.name }}:{{ .Values.mongo.image.version }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: {{ .Release.Name }}-mongo-data
+          mountPath: /data/db
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "12345678"
+        command:
+        - mongod
+        - --dbpath
+        - /data/db
+        - --auth

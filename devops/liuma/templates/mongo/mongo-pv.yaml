@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-mongo-pv
+  namespace: {{ .Release.Namespace }}
+  labels:
+    pv: mongo
+spec:
+  capacity:
+    {{- if and "exists" .Values.mongo.storage }}
+    storage: {{ .Values.mongo.storage }}
+    {{- else }}
+    storage: 1Gi
+    {{- end }}
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: {{ .Values.nfs.path }}
+    server: {{ .Values.nfs.ip }}

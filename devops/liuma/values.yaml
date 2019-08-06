@@ -1,0 +1,54 @@
+# Default values for liuma.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts: liuma.shoogoome.com
+  tls:
+    enabled: false
+    set_key:
+    set_crt:
+
+nfs:
+  image:
+    name: docker.dev.shoogoome.com/common/nfs
+    version: "1.0"
+  provisioner:
+  ip: 120.78.197.235
+  path: /testnfs
+
+redis:
+  storage: 500Mi
+  image:
+    name: docker.dev.shoogoome.com/liuma/redis
+    version: "1.0"
+
+mongo:
+  storage: 1Gi
+  image:
+    name: mongo
+    version: "4.0"
+
+server:
+  image:
+    name: docker.dev.shoogoome.com/liuma/server
+    version: "1.1"
+  replicas: 6
+  storage: 3Gi
+  index:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  token: jiweufq089wg4yh90318rqe8uy9h9
+  gzip: "false"
+  key: kof90ieu821j92r83u80hgui24ofe
+  datashards: 4
+  parityshards: 2
+  resend: 3

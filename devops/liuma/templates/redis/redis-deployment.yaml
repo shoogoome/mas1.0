@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name:  {{ .Release.Name }}-redis-deployment
+  namespace:  {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-redis
+    spec:
+      volumes:
+      - name: {{ .Release.Name }}-redis-data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-redis-pvc
+
+      containers:
+      - name: {{ .Release.Name }}-redis
+        image: {{ .Values.redis.image.name }}:{{ .Values.redis.image.version }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: {{ .Release.Name }}-redis-data
+          mountPath: /data

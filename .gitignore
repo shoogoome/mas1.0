@@ -1,0 +1,12 @@
+.idea
+*.tmp
+liuma/liuma
+/mongodb
+/redis
+/logs
+/data
+/test
+/devops/redis
+/devops/server
+/devops/docker-compose.yaml
+/devops/liuma.sh

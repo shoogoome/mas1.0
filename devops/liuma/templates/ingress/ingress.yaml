@@ -1,0 +1,26 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  namespace: {{ .Release.Namespace }}
+  {{- if not .Values.ingress.tls.enabled }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  {{- end }}
+spec:
+  rules:
+  - host: {{ .Values.ingress.hosts }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ .Release.Name }}-server-headless-service
+          servicePort: 80
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.path }}
+    secretName: {{ .Release.Name }}-ingree-secret
+  {{- end }}
+{{- end }}

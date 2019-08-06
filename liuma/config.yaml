@@ -1,0 +1,15 @@
+
+mongodb:
+  host: liuma-mongodb-service
+  username: root
+  password: 12345678
+  port: 27017
+  db_name: liuma
+
+redis:
+  host: liuma-redis-service
+  port: 6379
+  password: 12345678
+
+
+
