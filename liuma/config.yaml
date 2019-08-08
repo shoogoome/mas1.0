@@ -1,6 +1,6 @@
 
 mongodb:
-  host: liuma-mongodb-service
+  host: liuma-mongo-service
   username: root
   password: 12345678
   port: 27017

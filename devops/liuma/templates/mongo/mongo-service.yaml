@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-mongo-service
+  name: liuma-mongo-service
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
