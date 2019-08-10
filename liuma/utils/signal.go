@@ -41,7 +41,7 @@ func signal (nip string, ips chan string) {
 		fmt.Sprintf("http://%s%s", nip, SystemConfig.Server.SignalUrl),
 		nil)
 
-	request.Header.Add("system_token", SystemConfig.Server.Token)
+	request.Header.Add("systemToken", SystemConfig.Server.Token)
 	response, err := client.Do(request); if err != nil {
 		return
 	}

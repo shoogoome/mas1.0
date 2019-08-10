@@ -21,26 +21,26 @@
 <!-- **启动系统后需手动初始化mongo环境，数据库：liuma、collectin* -->
 
 # 接口说明
-**ps: 需附带system_token的接口应为后端访问接口，前端与系统交互应使用后端获取的临时token**
+**ps: 需附带systemToken的接口应为后端访问接口，前端与系统交互应使用后端获取的临时token**
 ```
 /server/token [put] 修改系统token
-headers: system_token 附带系统token
+headers: systemToken 附带系统token
 return: status success
 ```
 ```
 /server/active [get] 获取活跃信号
-headers: system_token 附带系统token
+headers: systemToken 附带系统token
 return status 'ip列表'
 ```
 ```
 /upload/token [get] 生成上传令牌
-headers: system_token 附带系统token
+headers: systemToken 附带系统token
 url参数: hash 文件hash
 return token token
 ```
 ```
 /download/token [get] 生成下载令牌
-headers: system_token 附带系统token
+headers: systemToken 附带系统token
 url参数: hash 文件hash
 return token token
 ```

@@ -9,7 +9,6 @@ import (
 	"liuma/models"
 	"liuma/utils"
 	"net/http"
-	"strings"
 )
 
 // MAS控制器基类
@@ -19,9 +18,9 @@ type ControllerBase struct {
 
 func (this *ControllerBase) Verification() {
 	// 验证系统token
-	token := this.Ctx.Input.Header("system_token")
-	token = strings.Replace(token, " ", "", -1)
-	if token == "" || utils.SystemConfig.Server.Token != token{
+	token := this.Ctx.Input.Header("systemToken")
+
+	if utils.SystemConfig.Server.Token != token{
 		this.Exception(http_err.SystemTokenVerificationFail())
 	}
 }

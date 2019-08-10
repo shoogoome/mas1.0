@@ -161,7 +161,7 @@ func (this *FileSystemController) Finish() {
 				fmt.Sprintf("http://%s%s?index=%s", nip, utils.SystemConfig.Server.StorageChuckUrl, c),
 				nil,
 			)
-			request.Header.Add("system_token", utils.SystemConfig.Server.Token)
+			request.Header.Add("systemToken", utils.SystemConfig.Server.Token)
 			request.Header.Add("token", token)
 
 			response, err := client.Do(request); if err != nil{
@@ -239,7 +239,7 @@ func (this *FileSystemController) Download() {
 			request, _ := http.NewRequest("GET",
 				fmt.Sprintf("http://%s%s?index=%d", ip, utils.SystemConfig.Server.StorageUrl, index),
 				nil)
-			request.Header.Add("system_token", utils.SystemConfig.Server.Token)
+			request.Header.Add("systemToken", utils.SystemConfig.Server.Token)
 			request.Header.Add("token", token)
 			response, err := client.Do(request); if err != nil {
 				lock <- 0

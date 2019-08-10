@@ -58,7 +58,7 @@ spec:
         - name: Gzip
           value: {{ .Values.server.gzip | default "false" | quote }}
         - name: ServerIp
-          value: {{ range .Values.server.index }}{{ $name }}-server-statefulset-{{ . }},{{ end }}
+          value: {{ range .Values.server.index }}{{ $name }}-server-statefulset-{{ . }}.{{ $name }}-server-headless-service,{{ end }}
         - name: DataShards
           value: {{ .Values.server.datashards | default "4" | quote }}
         - name: ParityShards

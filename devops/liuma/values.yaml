@@ -15,7 +15,7 @@ ingress:
 
 nfs:
   image:
-    name: docker.dev.shoogoome.com/common/nfs
+    name: docker.hub.shoogoome.com/common/nfs
     version: "1.0"
   provisioner:
   ip: 120.78.197.235
@@ -24,7 +24,7 @@ nfs:
 redis:
   storage: 500Mi
   image:
-    name: docker.dev.shoogoome.com/liuma/redis
+    name: docker.hub.shoogoome.com/liuma/redis
     version: "1.0"
 
 mongo:
@@ -35,8 +35,8 @@ mongo:
 
 server:
   image:
-    name: docker.dev.shoogoome.com/liuma/server
-    version: "1.1"
+    name: docker.hub.shoogoome.com/liuma/server
+    version: "1.7"
   replicas: 6
   storage: 3Gi
   index:

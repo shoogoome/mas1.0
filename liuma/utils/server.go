@@ -22,7 +22,7 @@ func SendFileShard(ip string, shard []byte, index int, token string, statusMap c
 	request, _ := http.NewRequest("POST",
 		fmt.Sprintf("http://%s%s?index=%d", ip, SystemConfig.Server.StorageUrl, index),
 		&buf)
-	request.Header.Add("system_token", SystemConfig.Server.Token)
+	request.Header.Add("systemToken", SystemConfig.Server.Token)
 	request.Header.Add("token", token)
 	request.Header.Set("Content-Type", contentType)
 	response, err := client.Do(request)
@@ -53,7 +53,7 @@ func DeleteFileShard(ips []string, token string) {
 			request, _ := http.NewRequest("DELETE",
 				fmt.Sprintf("http://%s%s?index=%d", i, SystemConfig.Server.StorageUrl, ind),
 				nil)
-			request.Header.Add("system_token", SystemConfig.Server.Token)
+			request.Header.Add("systemToken", SystemConfig.Server.Token)
 			request.Header.Add("token", token)
 			_, _ = client.Do(request)
 		}(ip, index)
@@ -71,7 +71,7 @@ func DeleteFileChuck(chuckInfo models.RedisChucks, token string) {
 			request, _ := http.NewRequest("DELETE",
 				fmt.Sprintf("http://%s%s?index=%s", i, SystemConfig.Server.StorageChuckUrl, ind),
 				nil)
-			request.Header.Add("system_token", SystemConfig.Server.Token)
+			request.Header.Add("systemToken", SystemConfig.Server.Token)
 			request.Header.Add("token", token)
 			_, _ = client.Do(request)
 		}(ip, index)
