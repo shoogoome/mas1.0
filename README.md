@@ -18,7 +18,7 @@
 2. helm repo update
 3. helm install '自定义仓库名'/liuma 自行按需添加其他参数
 
-<!-- **启动系统后需手动初始化mongo环境，数据库：liuma、collectin* -->
+**启动系统后需手动初始化mongo环境，数据库: 'liuma'**
 
 # 接口说明
 **ps: 需附带systemToken的接口应为后端访问接口，前端与系统交互应使用后端获取的临时token**
