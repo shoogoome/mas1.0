@@ -12,10 +12,13 @@
 
 - 本地版  
 1. clone下当前资源仓库
-2. 在devops目录下执行 ./init.sh helm install ./liuma 自行按需添加其他参数
+2. 在devops目录下执行 ./init.sh
+3. 执行helm install ./liuma 自行按需添加其他参数
 
 - 线上版  
-1. helm repo add '自定义仓库名' https://docker.hub.shoogoome.com/chartrepo/liuma
+1. clone下当前资源仓库
+2. 在devops目录下执行 ./init.sh
+3. helm repo add '自定义仓库名' https://docker.hub.shoogoome.com/chartrepo/liuma
 2. helm repo update
 3. helm install '自定义仓库名'/liuma 自行按需添加其他参数
 
