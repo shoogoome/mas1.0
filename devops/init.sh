@@ -8,9 +8,9 @@ init_path() {
     mkdir -p ${WORK_DIR}'/redis'
     mkdir -p ${WORK_DIR}'/mongo'
     for i in `seq 0 5`; do
-        mkdir -p ${WORK_DIR}'/server/root'
-        mkdir -p ${WORK_DIR}'/server/tmp'
-        mkdir -p ${WORK_DIR}'/server/logs'
+        mkdir -p ${WORK_DIR}'/server/${i}/root'
+        mkdir -p ${WORK_DIR}'/server/${i}/tmp'
+        mkdir -p ${WORK_DIR}'/server/${i}/logs'
     done
 }
 
