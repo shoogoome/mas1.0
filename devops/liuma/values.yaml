@@ -13,13 +13,30 @@ ingress:
     set_key:
     set_crt:
 
-nfs:
-  image:
-    name: docker.hub.shoogoome.com/common/nfs
-    version: "1.0"
-  provisioner:
-  ip: 120.78.197.235
-  path: /testnfs
+# nfs:
+#   image:
+#     name: docker.hub.shoogoome.com/common/nfs
+#     version: "1.0"
+#   redis:
+#     provisioner: shoogoome.com/redis-nfs
+#     ip: 39.108.229.132
+#     path: /liuma/redis
+#   mongo:
+#     provisioner: shoogoome.com/mongo-nfs
+#     ip: 39.108.229.132
+#     path: /liuma/mongo
+#   server:
+#     provisioner: shoogoome.com/server-nfs
+#     ip: 39.108.229.132
+#     path: /liuma/server
+
+hostPath:
+  redis:
+    path: /liuma/redis
+  mongo:
+    path: /liuma/mongo
+  server:
+    path: /liuma/server/
 
 redis:
   storage: 500Mi

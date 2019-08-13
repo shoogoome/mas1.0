@@ -12,8 +12,8 @@ spec:
     spec:
       volumes:
       - name: {{ .Release.Name }}-mongo-data
-        persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-mongo-pvc
+        hostPath:
+          path: {{ .Values.hostPath.mongo.path }}
 
       containers:
       - name: {{ .Release.Name }}-mongo
@@ -28,9 +28,10 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           value: root
         - name: MONGO_INITDB_ROOT_PASSWORD
-          value: "12345678"
+          value: '12345678'
         command:
         - mongod
         - --dbpath
         - /data/db
         - --auth
+        - --bind_ip_all

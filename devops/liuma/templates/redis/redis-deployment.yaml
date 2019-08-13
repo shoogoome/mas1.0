@@ -12,8 +12,8 @@ spec:
     spec:
       volumes:
       - name: {{ .Release.Name }}-redis-data
-        persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-redis-pvc
+        hostPath:
+          path: {{ .Values.hostPath.redis.path }}
 
       containers:
       - name: {{ .Release.Name }}-redis
