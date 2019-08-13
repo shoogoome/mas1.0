@@ -13,3 +13,5 @@ init_path() {
         mkdir -p ${WORK_DIR}'/server/logs'
     done
 }
+
+init_path

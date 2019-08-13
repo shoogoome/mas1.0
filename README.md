@@ -11,7 +11,8 @@
 **前置条件: 系统配置好Kubernetes分布式环境**
 
 - 本地版  
-1. clone下当前资源仓库，在devops目录下执行 helm install ./liuma 自行按需添加其他参数
+1. clone下当前资源仓库
+2. 在devops目录下执行 ./init.sh helm install ./liuma 自行按需添加其他参数
 
 - 线上版  
 1. helm repo add '自定义仓库名' https://docker.hub.shoogoome.com/chartrepo/liuma
