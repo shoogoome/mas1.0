@@ -1,7 +1,7 @@
 {{ $name := .Release.Name }}
 {{ $nameSpace := .Release.Namespace }}
 {{ $server := .Values.server }}
-{{ $path := .Values.hostPath.server }}
+{{ $path := .Values.hostPath.server.path }}
 {{- range .Values.server.index }}
 ---
 apiVersion: apps/v1beta1

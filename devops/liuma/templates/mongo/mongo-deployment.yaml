@@ -29,9 +29,4 @@ spec:
           value: root
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: '12345678'
-        command:
-        - mongod
-        - --dbpath
-        - /data/db
-        - --auth
-        - --bind_ip_all
+
