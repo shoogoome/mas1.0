@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "1.0"
 description: nfs存储引擎，修复mongodb启动错误
 name: liuma
-version: 1.2.4
+version: 1.2.5

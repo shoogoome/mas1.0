@@ -36,7 +36,7 @@ mongo:
 server:
   image:
     name: docker.hub.shoogoome.com/liuma/server
-    version: "1.5"
+    version: "1.7"
   replicas: 6
   storage: 3Gi
   index:
