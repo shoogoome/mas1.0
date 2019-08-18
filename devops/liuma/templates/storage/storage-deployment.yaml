@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: {{ .Release.Name }}-nfs-provisioner
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-nfs-provisioner
+    spec:
+      serviceAccount: {{ .Release.Name }}-account
+      containers:
+        - name: {{ .Release.Name }}-nfs-provisioner
+          image: {{ .Values.nfs.image.name }}:{{ .Values.nfs.image.version }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: {{ .Values.nfs.provisioner | default "shoogoome.com/nfs" }}
+            - name: NFS_SERVER
+              value: {{ .Values.nfs.ip }}
+            - name: NFS_PATH
+              value: {{ .Values.nfs.path }}
+      volumes:
+        - name: {{ .Release.Name }}-nfs-client-root
+          nfs:
+            server: {{ .Values.nfs.ip }}
+            path: {{ .Values.nfs.path }}
