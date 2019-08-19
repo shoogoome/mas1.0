@@ -153,6 +153,7 @@ func (this *FileSystemController) Finish() {
 	var mu sync.RWMutex
 	lock := make(chan int)
 	var chucks = make([][]byte, chuckNum)
+
 	for chuck, ip := range chuckInfo.ChuckInfo {
 		go func(c string, nip string, lock chan int) {
 			client := http.Client{}
