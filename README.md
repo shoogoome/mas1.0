@@ -12,15 +12,14 @@
 
 - 本地版  
 1. clone下当前资源仓库
-2. 在devops目录下执行 ./init.sh
+2. 创建nfs服务并自行修改values.yaml配置
 3. 执行helm install ./liuma 自行按需添加其他参数
 
 - 线上版  
-1. clone下当前资源仓库
-2. 在devops目录下执行 ./init.sh
-3. helm repo add '自定义仓库名' https://docker.hub.shoogoome.com/chartrepo/liuma
+1. helm repo add '自定义仓库名' https://docker.hub.shoogoome.com/chartrepo/liuma
 2. helm repo update
-3. helm install '自定义仓库名'/liuma 自行按需添加其他参数
+3. 创建nfs服务
+3. helm install '自定义仓库名'/liuma 自行按需添加其他参数（按照values文件格式修改nfs配置）
 
 **启动系统后需手动初始化mongo环境，数据库: 'liuma'**
 
@@ -82,5 +81,5 @@ return file
 3. 当前使用的中间件 redis、mongo仍处于单机形式，后续将部署为集群可扩容形式
 4. 与主系统之间识别手段单一简陋
 5. 忘记支持断点下载了...
-6. 原本支持动态扩容，采用statefulset策略部署server服务，由nfs提供存储服务，但一旦nfs服务器宕机则全面停止服务。所以在摸索出其他存储服务之前先用host存储b叭
+6. 采用statefulset策略部署server服务，由nfs提供存储服务，但一旦nfs服务器宕机则全面停止服务。2.0将支持其他存储服务
 7. 完成上传不应该由用户上传总分片数。。。
