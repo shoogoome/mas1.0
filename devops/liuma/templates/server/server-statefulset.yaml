@@ -22,6 +22,20 @@ spec:
           {{- else }}
           storage: 3Gi
           {{- end }}
+  - metadata:
+      name: {{ .Release.Name }}-server-tmp
+      namespace: {{ .Release.Namespace }}
+      annotations:
+        volume.beta.kubernetes.io/storage-class: {{ .Release.Name }}-nfs-storageclass
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          {{- if and "exists" .Values.server.storage }}
+          storage: {{ .Values.server.storage }}
+          {{- else }}
+          storage: 3Gi
+          {{- end }}
   template:
     metadata:
       namespace: {{ .Release.Namespace }}
@@ -38,7 +52,7 @@ spec:
           mountPath: /logs
         - name: {{ .Release.Name }}-server-data
           mountPath: /root
-        - name: {{ .Release.Name }}-server-data
+        - name: {{ .Release.Name }}-server-tmp
           mountPath: /tmp
         ports:
         - containerPort: 80

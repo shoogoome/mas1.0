@@ -63,8 +63,7 @@ return status success
 ```
 /upload/finish [get] 完成上传(仅断点续传模式需要)
 headers: token 上传临时token
-url参数: chuck_num 分片总数  
-        file_name 文件名称
+url参数: file_name 文件名称
 return status success
 ```
 ```
@@ -82,5 +81,4 @@ return file
 4. 与主系统之间识别手段单一简陋
 5. 忘记支持断点下载了...
 6. 采用statefulset策略部署server服务，由nfs提供存储服务，但一旦nfs服务器宕机则全面停止服务。2.0将支持其他存储服务
-7. 完成上传不应该由用户上传总分片数。。。
-8. 没有查询文件信息接口
+7. 没有查询、删除文件信息接口

@@ -132,9 +132,9 @@ func (this *FileSystemController) Finish() {
 		this.Exception(http_err.LackParams("file_name"))
 	}
 
-	chuckNum, err := this.GetInt("chuck_num"); if err != nil {
-		this.Exception(http_err.LackParams("chuck_num"))
-	}
+	//chuckNum, err := this.GetInt("chuck_num"); if err != nil {
+	//	this.Exception(http_err.LackParams("chuck_num"))
+	//}
 
 	redisConn := this.RedisConn()
 	defer redisConn.Close()
@@ -150,9 +150,10 @@ func (this *FileSystemController) Finish() {
 		this.Exception(http_err.UploadFail())
 	}
 	// 读取文件
+	chuckNum := len(chuckInfo.ChuckInfo)
 	var mu sync.RWMutex
 	lock := make(chan int)
-	var chucks = make([][]byte, chuckNum)
+	var chucks = make([][]byte, chuckNum + 1)
 
 	for chuck, ip := range chuckInfo.ChuckInfo {
 		go func(c string, nip string, lock chan int) {

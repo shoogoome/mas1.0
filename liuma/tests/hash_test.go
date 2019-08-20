@@ -18,7 +18,7 @@ func TestFileHash(t *testing.T) {
 		log.Println(fmt.Sprintf("%v", err))
 		os.Exit(1)
 	}
-
+	log.Println(len(filebyte))
 	log.Println(utils.CalculateHash(bytes.NewReader(filebyte)))
 
 
