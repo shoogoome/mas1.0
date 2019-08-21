@@ -62,7 +62,8 @@ return status success
 ```
 ```
 /upload/finish [get] 完成上传(仅断点续传模式需要)
-headers: token 上传临时token
+headers: token 上传临时token  
+         systemToken 附带系统token
 url参数: file_name 文件名称
 return status success
 ```
