@@ -19,9 +19,17 @@ func SendFileShard(ip string, shard []byte, index int, token string, statusMap c
 	}
 
 	client := http.Client{}
-	request, _ := http.NewRequest("POST",
+	request, err := http.NewRequest("POST",
 		fmt.Sprintf("http://%s%s?index=%d", ip, SystemConfig.Server.StorageUrl, index),
 		&buf)
+	if err != nil {
+		statusMap <- models.ShardsStatus{
+			Ip:     ip,
+			Status: false,
+			Index:  index,
+		}
+		return
+	}
 	request.Header.Add("systemToken", SystemConfig.Server.Token)
 	request.Header.Add("token", token)
 	request.Header.Set("Content-Type", contentType)
