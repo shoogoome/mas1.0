@@ -31,6 +31,15 @@ func (this *FileSystemController) GenerateDownloadToken() {
 	this.generateToken(utils.Download)
 }
 
+// 获取文件内容
+// @router /file/info [get]
+func (this *FileSystemController) FileInfo() {
+	this.Verification()
+	// 从token载入hash
+	hash := this.LoadHash(utils.All)
+	this.ReturnJSON(utils.GetFileInfo(hash))
+}
+
 // 单文件上传
 // @router /upload/single [post]
 func (this *FileSystemController) SingleUpload() {
@@ -124,7 +133,7 @@ func (this *FileSystemController) ChunkUpload() {
 // 完成上传
 // @router /upload/finish [get]
 func (this *FileSystemController) Finish() {
-
+	this.Verification()
 	hash := this.LoadHash(utils.Upload)
 	token := this.Ctx.Input.Header("token")
 	fileName := this.GetString("file_name")

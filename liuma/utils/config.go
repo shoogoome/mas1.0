@@ -44,7 +44,7 @@ func InitEnvConfig() {
 	SystemConfig.Server.ServerIp = strings.Split(serverIP, ",")
 	SystemConfig.Server.ServerNum = len(SystemConfig.Server.ServerIp)
 	// 获取无头服务名构造dns域名
-	headlessServiceName := strings.Split(SystemConfig.Server.ServerIp[0], ".")[1]
-	SystemConfig.Server.Server = strings.Join([]string{os.Getenv("HOSTNAME"), headlessServiceName}, ".")
-	//SystemConfig.Server.Server = os.Getenv("Server")
+	//headlessServiceName := strings.Split(SystemConfig.Server.ServerIp[0], ".")[1]
+	//SystemConfig.Server.Server = strings.Join([]string{os.Getenv("HOSTNAME"), headlessServiceName}, ".")
+	SystemConfig.Server.Server = os.Getenv("Server")
 }
