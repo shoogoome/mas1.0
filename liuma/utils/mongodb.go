@@ -12,6 +12,7 @@ var MongoClient *mongo.Client
 var MongoConn *mongo.Database
 
 func InitMongoClient() {
+	time.Sleep(5 * time.Second)
 	err := NewMongoClient()
 	if err == nil {
 		fmt.Println("==> Connected to MongoDB!")

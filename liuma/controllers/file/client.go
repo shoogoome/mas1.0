@@ -125,8 +125,11 @@ func (this *FileSystemController) ChunkUpload() {
 	chuckInfo.ChuckInfo[chuck] = utils.SystemConfig.Server.Server
 	chuckInfoByte, _ := json.Marshal(chuckInfo)
 	_, _ = redisConn.Do("set", hash, string(chuckInfoByte[:]))
+	// 上传进度
+	speed := strconv.Itoa(len(chuckInfo.ChuckInfo))
 	this.ReturnJSON(map[string]string{
 		"status": "success",
+		"speed": speed,
 	})
 }
 
@@ -140,10 +143,6 @@ func (this *FileSystemController) Finish() {
 	if fileName == "" {
 		this.Exception(http_err.LackParams("file_name"))
 	}
-
-	//chuckNum, err := this.GetInt("chuck_num"); if err != nil {
-	//	this.Exception(http_err.LackParams("chuck_num"))
-	//}
 
 	redisConn := this.RedisConn()
 	defer redisConn.Close()
@@ -285,7 +284,6 @@ func (this *FileSystemController) Download() {
 	file = bytes.NewReader(dd)
 	// 输出文件
 	this.Ctx.Output.Header("Content-Disposition", "attachment; filename="+fileInfo.Name)
-	//this.Ctx.Output.Header("Content-Length", strconv.FormatFloat(fileInfo.Size, 'E', 1, 64))
 	this.Ctx.Output.Header("Content-Length", fmt.Sprintf("%d", len(dd)))
 	http.ServeContent(this.Ctx.Output.Context.ResponseWriter, this.Ctx.Output.Context.Request, fileInfo.Name, time.Now(), file)
 }
